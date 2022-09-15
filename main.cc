@@ -208,7 +208,7 @@ void update_block(float dt, block &b) {
 
         b.v_prev = b.v;
         b.v = b.v_prev + dt*b.a;
-        if (b.v*b.v_prev < v_epsilon*v_epsilon) {
+        if (b.v*b.v_prev < 0 or mod(b.v) < v_epsilon) {
             if (mod(b.a) < b.friction) b.a = b.v = 0;
         }
 
