@@ -1,4 +1,7 @@
 # Earthquake simulator
+
+[Play here](https://bibanez.itch.io/earthquake-simulator)
+
 > The purpose of this simulation is to play with a simple dynamic model that shows
 > some of the characteristics of earthquakes.
 
@@ -31,10 +34,15 @@ We only study one dimension for the blocks, horizontally.
 The equations are really simple.
 To calculate the acceleration of a block:
 
-$a=1/m \cdot (F_p+F_{k_{next}}-F_{k_{prev}}-F_f)\\
-F_p=\text{Upper spring force}, \\
-F_{k_{next}},F_{k_{prev}}=\text{Inter-block spring force}\\
-F_f=\text{Friction force (static if }|v| \lt v_\epsilon \text{ and dynamic if else})$
+$$
+a=1/m \cdot (F_p+F_{k_{next}}-F_{k_{prev}}-F_f)$$
+
+$$F_p=\text{Upper spring force},$$
+
+$$F_{k_{next}},F_{k_{prev}}=\text{Inter-block spring force}$$
+
+$$F_f=\text{Friction force (static if }|v| \lt v_\epsilon \text{ and dynamic if else})
+$$
 
 The driving that pulls the upper springs forward moves at a constant velocity 
 ($\epsilon(t)=\epsilon_0+\dot\epsilon(t))$ and is unaffected by the pulling of 
@@ -45,9 +53,13 @@ position of all the blocks, we can obtain the next timestep acceleration for eac
 [Leapfrog integration](https://en.wikipedia.org/wiki/Leapfrog_integration) can
 be summarized like this:
 
-$a_i=a(X_i,v_{i-\frac{1}{2}},t)\\
-v_{i+\frac{1}{2}}=v_{i-\frac{1}{2}}+a_i\Delta t\\
-x_{i+1}=x_i+v_{i+\frac{1}{2}}\Delta t$
+$$
+a_i=a(X_i,v_{i-\frac{1}{2}},t)$$
+
+$$v_{i+\frac{1}{2}}=v_{i-\frac{1}{2}}+a_i\Delta t$$
+
+$$x_{i+1}=x_i+v_{i+\frac{1}{2}}\Delta t
+$$
 
 We came up with a modification to this algorithm that is useful for the problem
 of dynamic/static friction. This problem is the following:
